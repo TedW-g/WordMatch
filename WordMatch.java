@@ -18,13 +18,11 @@ public WordMatch(String word)
 public int scoreGuess(String guess)
 {
     int count = 0;
-    for (int i = 0; i < secret.length(); i++)
+    for (int i = 0; i <= secret.length() - guess.length(); i++)       
     {
-        for (secret.substring(i, i + guess.length()))
-        {
-
-        }
+        if (secret.substring(i, i+guess.length()).equals(guess)) count++;
     }
+    return count * guess.length() * guess.length();
 }
 
 { /* to be implemented in part (a) */ }
@@ -35,7 +33,15 @@ public int scoreGuess(String guess)
 */
 public String findBetterGuess(String guess1, String guess2)
 {
-
+    int num1 = scoreGuess(guess1);
+    int num2 = scoreGuess(guess2);
+    if (num1 == num2)
+    {
+        if (guess1.compareTo(guess2) > 0) return guess1;
+        else return guess2;
+    }
+    if (num1 > num2) return guess1;
+    else return guess2;
 }
 
 { /* to be implemented in part (b) */ }
